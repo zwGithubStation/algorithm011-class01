@@ -44,13 +44,14 @@ public:
 
 		while (!curLevelQueue.empty())
 		{
-			for (auto pos = curLevelQueue.begin(); pos != curLevelQueue.end(); pos++)
+			deque<TreeNode* >::iterator pos;
+			for (pos = curLevelQueue.begin(); pos != curLevelQueue.end(); pos++)
 			{
-				res[level].push_back(pos->val);
+				res[level].push_back((*pos)->val);
 				if (pos->left != NULL)
-					nextLevelQueue.push_back(pos->left);
+					nextLevelQueue.push_back((*pos)->left);
 				if (pos->right != NULL)
-					nextLevelQueue.push_back(pos->right);
+					nextLevelQueue.push_back((*pos)->right);
 			}
 
 			curLevelQueue = nextLevelQueue;
