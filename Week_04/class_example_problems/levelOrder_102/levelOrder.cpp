@@ -6,7 +6,7 @@
 
    baseline solve :
 
-   compile: g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g combine.cpp -o combine
+   compile: gcc -fsanitize=address -fno-omit-frame-pointer -O1 -lstdc++ -g levelOrder.cpp -lstdc++ -o combine
  */
 
 
@@ -20,6 +20,7 @@
  * };
  */
 #include <vector>
+#include <cstdlib>
 
 using namespace std;
 
@@ -32,7 +33,7 @@ using namespace std;
  
 class Solution {
 public:
-    vector<vector<int>> levelOrder(TreeNode* root) {
+    vector<vector<int > > levelOrder(TreeNode* root) {
         return NULL;
     }
 };
