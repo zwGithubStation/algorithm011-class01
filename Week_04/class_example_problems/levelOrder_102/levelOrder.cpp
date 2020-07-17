@@ -39,7 +39,7 @@ public:
 		vector<vector<int > > res;
 
 		deque<TreeNode* > curLevelQueue;
-		nodeQueue.push(root);
+		curLevelQueue.push_back(root);
 		deque<TreeNode* > nextLevelQueue;
 
 		while (!curLevelQueue.empty())
@@ -54,6 +54,7 @@ public:
 			}
 
 			curLevelQueue = nextLevelQueue;
+			nextLevelQueue.clear();
 			level++;
 		}
     }
