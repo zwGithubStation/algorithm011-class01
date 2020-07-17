@@ -6,7 +6,7 @@
 
    baseline solve :
 
-   compile: gcc -fsanitize=address -fno-omit-frame-pointer -O1 -lstdc++ -g levelOrder.cpp -lstdc++ -o combine
+   compile: g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g levelOrder.cpp -lstdc++ -o levelOrder
  */
 
 
@@ -34,7 +34,8 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int > > levelOrder(TreeNode* root) {
-        return NULL;
+		vector<vector<int > > res;
+		return res;
     }
 };
 
