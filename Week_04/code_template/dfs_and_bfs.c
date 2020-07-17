@@ -4,7 +4,7 @@
  */
 
 #include <map>
-
+#include <deque>
 
 //DFS递归写法简易版
 void dfs(Node* root) {
@@ -30,8 +30,8 @@ void dfs(Node* root) {
 
 
 //DFS递归写法增强版 包含深度信息
-vector<vector<int> > levelOrder(TreeNode root) {
-	vector<vector<int> > allResults;
+vector<vector<int > > levelOrder(TreeNode root) {
+	vector<vector<int > > allResults;
     if(root==null){
         return allResults;
     }
@@ -40,9 +40,9 @@ vector<vector<int> > levelOrder(TreeNode root) {
     }
 
 
-void travel(TreeNode root, int level, vector<vector<int>> results){
+void travel(TreeNode root, int level, vector<vector<int > > results){
     if(results.size() == level){
-		vector<int> c;
+		vector<int > c;
         results.push_back(c);
     }
     results[level].push_back(root.val);
@@ -75,15 +75,15 @@ void dfs(Node* root)
 //BFS，借助queue结构
 void BFS(Node *root)
 {
-	queue<Node *> queueNodes;
-	queueNodes.push(root);
+	deque<Node *> queueNodes;
+	queueNodes.push_back(root);
 
 	while (!queueNodes.empty()) {
-	    Node* node = queueNodes.top();
-	    queueNodes.pop();
+	    Node* node = queueNodes.front();
+	    queueNodes.pop_front();
 
 	    for (int i = 0; i < node->children.size(); ++i) {
-	        queueNodes.push(node->children[i]);
+	        queueNodes.push_back(node->children[i]);
 	    }
   }
 

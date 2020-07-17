@@ -21,6 +21,7 @@
  */
 #include <vector>
 #include <cstdlib>
+#include <deque>
 
 using namespace std;
 
@@ -34,8 +35,27 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int > > levelOrder(TreeNode* root) {
+		int level = 0;
 		vector<vector<int > > res;
-		return res;
+
+		deque<TreeNode* > curLevelQueue;
+		nodeQueue.push(root);
+		deque<TreeNode* > nextLevelQueue;
+
+		while (!curLevelQueue.empty())
+		{
+			for (auto pos = curLevelQueue.begin(); pos != curLevelQueue.end(); pos++)
+			{
+				res[level].push_back(pos->val);
+				if (pos->left != NULL)
+					nextLevelQueue.push_back(pos->left);
+				if (pos->right != NULL)
+					nextLevelQueue.push_back(pos->right);
+			}
+
+			curLevelQueue = nextLevelQueue;
+			level++;
+		}
     }
 };
 
