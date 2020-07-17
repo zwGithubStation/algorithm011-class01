@@ -48,9 +48,9 @@ public:
 			for (pos = curLevelQueue.begin(); pos != curLevelQueue.end(); pos++)
 			{
 				res[level].push_back((*pos)->val);
-				if (pos->left != NULL)
+				if ((*pos)->left != NULL)
 					nextLevelQueue.push_back((*pos)->left);
-				if (pos->right != NULL)
+				if ((*pos)->right != NULL)
 					nextLevelQueue.push_back((*pos)->right);
 			}
 
