@@ -92,6 +92,8 @@ public:
 			
 			copy(beginSet.begin(),beginSet.end(),ostream_iterator<string>(cout," "));
 			cout << endl;
+
+			cout << "cur round:" << minCnt << endl << endl << endl;
 			
 			unordered_set<string> tmpSet;
 			minCnt++;
