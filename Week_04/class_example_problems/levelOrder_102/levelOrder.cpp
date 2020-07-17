@@ -58,6 +58,7 @@ public:
 			nextLevelQueue.clear();
 			level++;
 		}
+		return res;
     }
 };
 
