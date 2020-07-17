@@ -15,7 +15,7 @@
 #include <unordered_set>
 #include <algorithm>
 #include <iterator>
-
+#include <iostream> 
 
 using namespace std;
 
@@ -157,9 +157,8 @@ int main()
 	Solution s;
 	string start("AAAAAAAA"); 
 	string end("CCCCCCCC");
-	vector <string > dict = {"AAAAAAAA","AAAAAAAC","AAAAAACC","AAAAACCC","AAAACCCC","AACACCCC","ACCACCCC","ACCCCCCC","CCCCCCCA","CCCCCCCC"}
-	vector <string > &dicts = dict;
-	int i = s.minMutation(start, end, dicts);
+	vector <string > dict = {"AAAAAAAA","AAAAAAAC","AAAAAACC","AAAAACCC","AAAACCCC","AACACCCC","ACCACCCC","ACCCCCCC","CCCCCCCA","CCCCCCCC"};
+	int i = s.minMutation(start, end, dict);
 	cout << "result:" << i << endl;
 	return 0;
 }
