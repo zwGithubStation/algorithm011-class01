@@ -146,6 +146,45 @@ void bfs(Node* root) {
 }
 ```
 
+**E.** C++BFS模板借助queue实现遍历，可以看到和DFS非递归模板，出了使用的数据结构不同，代码框架是一致的 
 
-## 3.扩展题目    
+## 3.课内题目与作业题要点记录   
+
+**A.** 102_二叉树的层序遍历  
+
+采用BFS思路，每层k放入queue的Node数目 == 需要加入vector[k]中的数值数目，只使用一个queue，即可实现。  
+
+```C++
+vector<vector<int > > levelOrder(TreeNode* root) {
+		int cnt = 0;
+        vector<vector<int > > res;
+
+        if(!root)   //临界条件
+            return res;
+
+		queue<TreeNode* > nodesQueue;
+		nodesQueue.push(root);  //初始queue中只有root
+
+		while (!nodesQueue.empty()) 
+		{
+			vector<int > curRes;
+			cnt = nodesQueue.size();   //记录当前层的Node数目
+			TreeNode* curNode;
+			while (cnt--)
+			{
+				curNode = nodesQueue.front();  //每次把一个Node记录在该层的数组中，并pop出queue
+				nodesQueue.pop();
+				curRes.push_back(curNode->val);
+				if (curNode->left)             //将本层Node的左右子Node依次入queue
+					nodesQueue.push(curNode->left);
+				if (curNode->right)
+					nodesQueue.push(curNode->right);	
+			}									//queue中该层的Node全部出queue
+			res.push_back(curRes);				//该层的数组记录完成
+		}
+		return res;
+    }
+```
+
+## 4.扩展题目    
 
