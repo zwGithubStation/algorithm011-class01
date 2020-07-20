@@ -141,7 +141,7 @@ public:
 			
 			if (tmpSet.size() < endSet.size())
 			{
-				endSet = tmpSet;
+				beginSet = tmpSet;
 			}else{
 				beginSet = endSet;
 				endSet = tmpSet;

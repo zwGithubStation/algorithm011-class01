@@ -150,7 +150,8 @@ void bfs(Node* root) {
 
 ## 3.课内题目与作业题要点记录   
 
-**A.** 102_二叉树的层序遍历  
+### 3.1 DFS与BFS(A--H)   
+**A.** 102_二叉树的层序遍历    
 
 采用BFS思路，每层k放入queue的Node数目 == 需要加入vector[k]中的数值数目，只使用一个queue，即可实现。  
 
@@ -184,7 +185,108 @@ vector<vector<int > > levelOrder(TreeNode* root) {
 		}
 		return res;
     }
-```
+```   
+
+**B.** 433_最小基因变化    
+该题和127_单词接龙是同样的问题，使用两端BST策略，代码需根据注释框架进行熟记：  
+```C++
+int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_set<string> wordDict(wordList.begin(), wordList.end());
+		
+	    if (wordDict.find(endWord) == wordDict.end()){
+	        return 0;
+	    }
+		
+	    unordered_set<string> beginSet{beginWord};
+	    unordered_set<string> endSet{endWord};
+
+		int step = 1;
+	    for (; !beginSet.empty();){
+			
+	        unordered_set<string> tempSet;
+	        ++step;
+			
+	        for (auto s : beginSet) {  //字典中不应包含当前待检索的词！！！！！
+	            wordDict.erase(s);
+	        }
+			
+	        for (auto s : beginSet) {   //对于每个候选单词
+	            for (int i = 0; i < s.size(); ++i){  //单词的每个字符i都参与变化
+	                string str = s;
+	                for (char c = 'a'; c <= 'z'; ++c){
+	                    str[i] = c;             //XXiXX 变为 XX[c]XX 时
+	                    if (wordDict.find(str) == wordDict.end()){  //如果在字典中没有XX[c]XX，说明不通，继续换当前位置字符
+	                        continue;
+	                    }
+	                    if (endSet.find(str) != endSet.end()){   //如果通了，则已找到联通路线，可以返回
+	                        return step;
+	                    }
+	                    tempSet.insert(str);   //将可以走入下一跳但并未联通的候选放入下一跳候选池
+	                }
+	            }
+	        }
+	        if (tempSet.size() < endSet.size()){  //如果下一跳候选池的大小 比最终匹配池小，选取下一跳候选池---->最终匹配池 的路线继续
+	            beginSet = tempSet;
+	        } else {
+	            beginSet = endSet;   //如果下一跳候选池的大小 比最终匹配池大，选取最终匹配池---->下一跳候选池 的路线继续
+	            endSet = tempSet;
+	        }
+	    }
+	    return 0;
+    }
+```     
+
+**C.** 22_括号生成   
+  
+**D.** 515_在每个树行中找最大值    
+
+**E.** 127_单词接龙  
+
+**F.** 126_单词接龙II   
+
+**G.** 200_岛屿数量  
+
+**H.** 529_扫雷游戏          
+
+### 3.2 贪心算法(I--O)  
+
+**I.** 322_零钱兑换   
+https://leetcode-cn.com/problems/coin-change/   
+
+**J.** 860_柠檬水找零     
+https://leetcode-cn.com/problems/lemonade-change/description/   
+
+**K.** 122_买卖股票的最佳时机 II  
+https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/description/     
+
+**L.** 455_分发饼干    
+https://leetcode-cn.com/problems/assign-cookies/description/ 
+
+**M.** 874_模拟行走机器人     
+https://leetcode-cn.com/problems/walking-robot-simulation/description/   
+
+**N.** 55_跳跃游戏    
+https://leetcode-cn.com/problems/jump-game/ 
+
+**O.** 45_跳跃游戏II  
+https://leetcode-cn.com/problems/jump-game-ii/   
+
+### 3.3 二分查找()   
+
+**P.** 69_x的平方根
+https://leetcode-cn.com/problems/sqrtx/   
+
+**Q.** 367_有效的完全平方数  
+https://leetcode-cn.com/problems/valid-perfect-square/   
+
+**R.** 33_搜索旋转排序  
+https://leetcode-cn.com/problems/search-in-rotated-sorted-array/   
+
+**S.** 74_搜索二维矩阵    
+https://leetcode-cn.com/problems/search-a-2d-matrix/  
+
+**T.** 153_寻找旋转排序数组中的最小值   
+https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/ 
 
 ## 4.扩展题目    
 
