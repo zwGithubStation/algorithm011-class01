@@ -22,42 +22,24 @@ public:
     vector<string> generateParenthesis(int n) {
 		vector<string> ret;
 		string curStr;
-		curStr[0] = '(';
-		dfs(ret, curStr, n, 1, 1);
+		dfs(ret, curStr, n, 0, 0);
 		return ret;
     }
 
-	void dfs(vector<string> &result, string &curStr, int n, int level, int left_cnt)
+	void dfs(vector<string> &result, string &curStr, int n, int left_cnt, int right_cnt)
 	{
-		if (level == 2*n-1)
+		if (left_cnt < right_cnt || left_cnt > n || right_cnt > n)
+			return;
+
+		if (left_cnt == n && right_cnt == n)
 		{
-			curStr[level] = ')';
-			cout << "one answer! found" << endl;
 			result.push_back(curStr);
 			return;
 		}
 
-		int right_cnt = level + 1 - left_cnt;
+		dfs(result, curStr+'(', n, left_cnt+1, right_cnt);
 
-		if (right_cnt == left_cnt)
-		{
-			curStr[level] = '(';
-			dfs(result, curStr, n, level+1, left_cnt+1);
-			return;
-		}
-
-		if (left_cnt == n)
-		{
-			curStr[level] = ')';
-			dfs(result, curStr, n, level+1, left_cnt);
-			return;
-		}
-
-		curStr[level] = '(';
-		dfs(result, curStr, n, level+1, left_cnt+1);
-
-		curStr[level] = ')';
-		dfs(result, curStr, n, level+1, left_cnt);
+		dfs(result, curStr+')', n, left_cnt, right_cnt+1);
 
 		return;
 	}
