@@ -21,12 +21,11 @@ class Solution {
 public:
     vector<string> generateParenthesis(int n) {
 		vector<string> ret;
-		string curStr;
-		dfs(ret, curStr, n, 0, 0);
+		dfs(ret, "", n, 0, 0);
 		return ret;
     }
 
-	void dfs(vector<string> &result, string &curStr, int n, int left_cnt, int right_cnt)
+	void dfs(vector<string> &result, string curStr, int n, int left_cnt, int right_cnt)
 	{
 		if (left_cnt < right_cnt || left_cnt > n || right_cnt > n)
 			return;
@@ -37,11 +36,9 @@ public:
 			return;
 		}
 
-		curStr[left_cnt+right_cnt] = '(';
-		dfs(result, curStr, n, left_cnt+1, right_cnt);
+		dfs(result, curStr+'(', n, left_cnt+1, right_cnt);
 
-		curStr[left_cnt+right_cnt] = ')';
-		dfs(result, curStr, n, left_cnt, right_cnt+1);
+		dfs(result, curStr+')', n, left_cnt, right_cnt+1);
 
 		return;
 	}
