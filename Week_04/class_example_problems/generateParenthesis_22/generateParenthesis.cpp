@@ -11,8 +11,9 @@
 
 
 #include <vector>
-#include <cstdlib>
-#include <queue>
+#include <iostream>
+#include <algorithm>
+
 
 using namespace std;
 
@@ -63,6 +64,11 @@ public:
 
 int main()
 {
+	Solution slu;
+	vector<string> s = slu.generateParenthesis(3);
+
+	for_each(s.begin(), s.end(), [](const auto &i){cout << i << endl; });
+	
 	return 0;
 }
 
