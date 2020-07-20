@@ -32,6 +32,7 @@ public:
 		if (level == 2*n-1)
 		{
 			curStr[level] = ')';
+			cout << "one answer! found" << endl;
 			result.push_back(curStr);
 			return;
 		}
@@ -67,7 +68,7 @@ int main()
 	Solution slu;
 	vector<string> s = slu.generateParenthesis(3);
 
-	for_each(s.begin(), s.end(), [](const auto &i){cout << i << endl; });
+	for_each(s.begin(), s.end(), [](const string &i){cout << i << endl; });
 	
 	return 0;
 }
