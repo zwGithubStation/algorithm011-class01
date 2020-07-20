@@ -237,10 +237,48 @@ int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
 ```     
 
 **C.** 22_括号生成   
+https://leetcode-cn.com/problems/generate-parentheses/#/description   
+
+使用dfs的框架，生成规范性的代码，没有太多要细述的，记得push_back和pop_back就完事了：  
+```C++
+vector<string> generateParenthesis(int n) {
+		vector<string> ret;
+        string s;
+		dfs(ret, s, n, 0, 0);
+		return ret;
+    }
+
+	void dfs(vector<string> &result, string &curStr, int n, int left_cnt, int right_cnt)
+	{
+		if (left_cnt < right_cnt || left_cnt > n || right_cnt > n)
+			return;
+
+		if (left_cnt == n && right_cnt == n)
+		{
+			result.push_back(curStr);
+			return;
+		}
+
+        curStr.push_back('(');
+		dfs(result, curStr, n, left_cnt+1, right_cnt);
+        curStr.pop_back();
+
+        curStr.push_back(')');
+		dfs(result, curStr, n, left_cnt, right_cnt+1);
+        curStr.pop_back();
+
+		return;
+	}
+```   
+
+P.S. 热评中还有动态规划的思路解答，这里先不做涉及 
   
-**D.** 515_在每个树行中找最大值    
+**D.** 515_在每个树行中找最大值  
+https://leetcode-cn.com/problems/find-largest-value-in-each-tree-row/  
+和102是同样的处理流程，只不过内部由记录变成了每次比大小，不再赘述代码    
 
 **E.** 127_单词接龙  
+见上面“433_最小基因变化”小结的总结，不再赘述代码  
 
 **F.** 126_单词接龙II   
 
