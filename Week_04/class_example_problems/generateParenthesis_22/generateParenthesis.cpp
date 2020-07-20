@@ -37,9 +37,11 @@ public:
 			return;
 		}
 
-		dfs(result, curStr+'(', n, left_cnt+1, right_cnt);
+		curStr[left_cnt+right_cnt] = '(';
+		dfs(result, curStr, n, left_cnt+1, right_cnt);
 
-		dfs(result, curStr+')', n, left_cnt, right_cnt+1);
+		curStr[left_cnt+right_cnt] = ')';
+		dfs(result, curStr, n, left_cnt, right_cnt+1);
 
 		return;
 	}
